@@ -99,4 +99,7 @@ workflow:
 ## 与 white-harness-engineering 的关系
 
 - 独立可用：本 skill 自带完整流程，不依赖 white-harness-engineering。
-- 协同：white-harness-engineering 的 `git-impact-topology` 工作流与本 skill 同构；在 white-harness 上下文里，Intent Routing 会路由到其内置工作流；单独使用则直接触发本 skill。
+- 双向交叉引用：
+  - **从 white-harness-engineering 进入**：其 Intent Routing 已含 `white-git-topology` 路由项（用户说"路由到 white-git-topology"即调用本 skill），亦含 `git-impact-topology` 工作流项（与本 skill 同构，可二选一）。
+  - **从本 skill 进入**：做 Git 影响拓扑分析时，若任务处于 white-harness 工程管控上下文，可回引 white-harness-engineering 的 SPEC / 代码审查 / Evidence Gate 流程，做到"拓扑分析 → 门禁管控"衔接。
+- 协同：white-harness-engineering 的 `git-impact-topology` 工作流与本 skill 同构；单独使用则直接触发本 skill。
